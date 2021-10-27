@@ -1,19 +1,16 @@
+import s from './Navigation.module.css';
 import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
   return (
-    <ul>
-      <NavLink>
-        <li>
-          <button type="button">Home</button>
-        </li>{' '}
+    <nav>
+      <NavLink exact to="/" className={s.link} activeClassName={s.active_link}>
+        Home
       </NavLink>
-      <NavLink>
-        <li>
-          <button type="button">Movies</button>
-        </li>
+      <NavLink to="/movies" className={s.link} activeClassName={s.active_link}>
+        Movies
       </NavLink>
-    </ul>
+    </nav>
   );
 };
 
