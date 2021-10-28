@@ -1,6 +1,6 @@
 import { useState } from 'react';
-
 import { useLocation, useHistory } from 'react-router-dom';
+import s from './SearchInput.module.css';
 
 export default function SearchInput({ changeValue }) {
   const [value, setValue] = useState('');
@@ -23,9 +23,10 @@ export default function SearchInput({ changeValue }) {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
+    <div className={s.formContainer}>
+      <form onSubmit={onSubmit} cl>
         <input
+          className={s.input}
           type="text"
           name="value"
           value={value}

@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { fetchMovieCredits } from '../../services/API';
 import defaultImg from '../../default.jpg';
+import s from './Cast.module.css';
 
 export default function Cast({ movieId }) {
-  const [cast, setCast] = useState(null);
+  const [cast, setCast] = useState([]);
 
   useEffect(() => {
     fetchMovieCredits(movieId).then(res => setCast(res.cast));
@@ -11,12 +12,11 @@ export default function Cast({ movieId }) {
 
   return (
     <div>
-      {cast ? (
+      {cast.length > 0 ? (
         <div>
-          <h3>Cast:</h3>
-          <ul>
+          <ul className={s.listActors}>
             {cast.map(actor => (
-              <li key={actor.id}>
+              <li key={actor.id} className={s.actorCard}>
                 <div>
                   <img
                     src={
@@ -25,6 +25,7 @@ export default function Cast({ movieId }) {
                         : defaultImg
                     }
                     alt={`${actor.name}`}
+                    className={s.castImg}
                   />
                   <h3>{actor.original_name}</h3>
                   <p>Character: {actor.character}</p>
@@ -35,7 +36,6 @@ export default function Cast({ movieId }) {
         </div>
       ) : (
         <div>
-          <h3>Cast:</h3>
           <p>Not found</p>
         </div>
       )}

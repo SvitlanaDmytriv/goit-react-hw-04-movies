@@ -10,6 +10,9 @@ import {
 import { fetchMovieDetails } from '../services/API';
 import defaultImg from '../default.jpg';
 
+import s from './Views.module.css';
+import Loader from '../components/Loader/Loader';
+
 const Cast = lazy(() => import('../components/Cast/Cast'));
 const Reviews = lazy(() => import('../components/Reviews/Reviews'));
 
@@ -26,10 +29,11 @@ export default function MovieDetailsPage() {
 
   return (
     <>
-      <div>
+      <div className={s.movieDetailsPage}>
         {moviePage && (
           <>
             <img
+              className={s.imgDetails}
               src={
                 moviePage.backdrop_path
                   ? `https://image.tmdb.org/t/p/w500/${moviePage.poster_path}`
@@ -39,20 +43,24 @@ export default function MovieDetailsPage() {
               width="300"
               height="250"
             />
-            <div>
-              <ul>
+            <div className={s.movieDescription}>
+              <ul className={s.list}>
                 <li>
-                  <h2>{moviePage.title}</h2>
+                  <h2 className={s.titleMovie}>{moviePage.title}</h2>
                 </li>
-                <li>
-                  <p>Release date:</p>
-                  <span>{` ${moviePage.release_date}`}</span>
+                <li className={s.listDescription}>
+                  <p className={s.text}>Release date:</p>
+                  <span
+                    className={s.release}
+                  >{` ${moviePage.release_date}`}</span>
                 </li>
-                <li>
+                <li className={s.listDescription}>
                   <span>{`Popularity: ${moviePage.popularity}%`}</span>
                 </li>
-                <li>
-                  <span>{`Overview: ${moviePage.overview}`}</span>
+                <li className={s.listDescription}>
+                  <span
+                    className={s.overview}
+                  >{`Overview: ${moviePage.overview}`}</span>
                 </li>
               </ul>
             </div>
@@ -60,12 +68,24 @@ export default function MovieDetailsPage() {
         )}
       </div>
 
-      <nav>
-        <NavLink to={`${url}/cast`}>Cast</NavLink>
-        <NavLink to={`${url}/reviews`}>Reviews</NavLink>
+      <nav className={s.navContainer}>
+        <NavLink
+          to={`${url}/cast`}
+          className={s.description}
+          activeClassName={s.activeLink}
+        >
+          Cast
+        </NavLink>
+        <NavLink
+          to={`${url}/reviews`}
+          className={s.description}
+          activeClassName={s.activeLink}
+        >
+          Reviews
+        </NavLink>
       </nav>
 
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<Loader />}>
         <Switch>
           <Route path={`${path}/cast`}>
             <Cast movieId={movieId} />

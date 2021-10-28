@@ -1,0 +1,47 @@
+.movieListContainer {
+  padding-top: 25px;
+  padding-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.movieList {
+  display: grid;
+  max-width: calc(100vw - 35px);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 16px;
+  margin: 0;
+
+  padding-left: 0;
+  text-align: center;
+}
+
+.movieLink {
+  color: rgb(215 62 154);
+}
+
+.movieСard {
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.36), 0px 4px 4px rgba(0, 0, 0, 0.36),
+    0px 1px 1px rgba(0, 0, 0, 0.42);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.movieСard:hover {
+  transform: scale(1.05);
+}
+
+.movieBody {
+  width: 100%;
+  min-height: 410px;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.movieImg {
+  width: 100%;
+  min-height: 410px;
+  object-fit: cover;
+}

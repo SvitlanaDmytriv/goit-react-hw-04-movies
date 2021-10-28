@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Navigation from './components/Navigation/Navigation.js';
+import Loader from './components/Loader/Loader';
 
 const HomePage = lazy(() => import('./views/HomePage'));
 const MoviesPage = lazy(() => import('./views/MoviesPage'));
@@ -14,7 +15,7 @@ function App() {
     <>
       <Navigation />
 
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<Loader />}>
         <Switch>
           <Route exact path="/">
             <HomePage />

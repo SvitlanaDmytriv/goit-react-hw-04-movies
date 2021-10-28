@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import MoviesList from '../components/MoviesList/MoviesList';
-
 import { fetchPopularMovies } from '../services/API';
+import s from './Views.module.css';
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -12,7 +12,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <h2>Popular movies</h2>
+      <h2 className={s.title}>Popular movies</h2>
       <MoviesList movies={movies} />
     </div>
   );

@@ -1,0 +1,25 @@
+.author {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.updated_at {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.emptyReviews {
+  font-size: 18px;
+  font-weight: 600;
+}
+.reviewsList {
+  padding-left: 20px;
+  color: #686262;
+}
+
+.reviewsListItem::after {
+  content: '';
+
+  display: block;
+  border-bottom: 2px solid #ee53b3;
+}

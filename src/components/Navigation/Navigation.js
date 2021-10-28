@@ -3,14 +3,16 @@ import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
   return (
-    <nav>
-      <NavLink exact to="/" className={s.link} activeClassName={s.active_link}>
-        Home
-      </NavLink>
-      <NavLink to="/movies" className={s.link} activeClassName={s.active_link}>
-        Movies
-      </NavLink>
-    </nav>
+    <header>
+      <nav>
+        <NavLink exact to="/" activeClassName={s.activeLink} className={s.link}>
+          Home
+        </NavLink>
+        <NavLink to="/movies" activeClassName={s.activeLink} className={s.link}>
+          Movies
+        </NavLink>
+      </nav>
+    </header>
   );
 };
 
