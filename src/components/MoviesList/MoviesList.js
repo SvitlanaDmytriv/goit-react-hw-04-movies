@@ -1,16 +1,25 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import defaultImg from '../../default.jpg';
 import s from './MoviesList.module.css';
 
 export default function MoviesList({ movies }) {
+  const location = useLocation();
   return (
     <div className={s.movieListContainer}>
       <ul className={s.movieList}>
         {movies &&
           movies.map(movie => (
             <li key={movie.id} className={s.movieСard}>
-              <Link to={`/movies/${movie.id}`} className={s.movieLink}>
+              <Link
+                to={{
+                  pathname: `/movies/${movie.id}`,
+                  state: {
+                    from: { location, label: 'go back' },
+                  },
+                }}
+                className={s.movieLink}
+              >
                 <div className={s.movieBody}>
                   <img
                     className={s.movieImg}

@@ -5,10 +5,18 @@ import { Switch, Route } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation.js';
 import Loader from './components/Loader/Loader';
 
-const HomePage = lazy(() => import('./views/HomePage'));
-const MoviesPage = lazy(() => import('./views/MoviesPage'));
-const MovieDetailsPage = lazy(() => import('./views/MovieDetailsPage'));
-const NotFoundPage = lazy(() => import('./views/NotFound'));
+const HomePage = lazy(() =>
+  import('./views/HomePage' /*webpackChunkName:'HomePage'*/),
+);
+const MoviesPage = lazy(() =>
+  import('./views/MoviesPage' /*webpackChunkName:'MoviesPage'*/),
+);
+const MovieDetailsPage = lazy(() =>
+  import('./views/MovieDetailsPage' /*webpackChunkName:'MovieDetailsPage'*/),
+);
+const NotFoundPage = lazy(() =>
+  import('./views/NotFound' /*webpackChunkName:'NotFoundPage'*/),
+);
 
 function App() {
   return (

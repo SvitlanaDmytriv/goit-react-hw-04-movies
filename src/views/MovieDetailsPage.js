@@ -1,25 +1,34 @@
-import { lazy, Suspense } from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import {
   useParams,
   NavLink,
   useRouteMatch,
   Switch,
   Route,
+  useHistory,
+  useLocation,
 } from 'react-router-dom';
 import { fetchMovieDetails } from '../services/API';
 import defaultImg from '../default.jpg';
 
 import s from './Views.module.css';
-import Loader from '../components/Loader/Loader';
 
-const Cast = lazy(() => import('../components/Cast/Cast'));
-const Reviews = lazy(() => import('../components/Reviews/Reviews'));
+import Loader from '../components/Loader/Loader';
+import ButtonGoBack from '../components/ButtonGoBack/ButtonGoBack';
+
+const Cast = lazy(() =>
+  import('../components/Cast/Cast' /*webpackChunkName:'Cast'*/),
+);
+const Reviews = lazy(() =>
+  import('../components/Reviews/Reviews' /*webpackChunkName:'Reviews'*/),
+);
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [moviePage, setMoviePage] = useState([]);
   const { url, path } = useRouteMatch();
+  const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     fetchMovieDetails(movieId).then(movie => {
@@ -36,9 +45,14 @@ export default function MovieDetailsPage() {
     }, 300);
   };
 
+  const goBack = () => {
+    history.push(location?.state?.from?.location);
+  };
+
   return (
     <>
       <div className={s.movieDetailsPage}>
+        <ButtonGoBack onClick={goBack} />
         {moviePage && (
           <>
             <img
@@ -79,14 +93,24 @@ export default function MovieDetailsPage() {
 
       <nav className={s.navContainer}>
         <NavLink
-          to={`${url}/cast`}
+          to={{
+            pathname: `${url}/cast`,
+            state: {
+              ...location.state,
+            },
+          }}
           className={s.description}
           activeClassName={s.activeLink}
         >
           Cast
         </NavLink>
         <NavLink
-          to={`${url}/reviews`}
+          to={{
+            pathname: `${url}/reviews`,
+            state: {
+              ...location.state,
+            },
+          }}
           className={s.description}
           activeClassName={s.activeLink}
         >
