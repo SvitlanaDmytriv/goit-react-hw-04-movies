@@ -1,14 +1,16 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { fetchMovieCredits } from '../../services/API';
 import defaultImg from '../../default.jpg';
 import s from './Cast.module.css';
 
-export default function Cast({ movieId }) {
+export default function Cast({ movieId, scroll }) {
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
     fetchMovieCredits(movieId).then(res => setCast(res.cast));
-  }, [movieId]);
+    scroll();
+  }, [movieId, scroll]);
 
   return (
     <div>
@@ -42,3 +44,8 @@ export default function Cast({ movieId }) {
     </div>
   );
 }
+
+Cast.propTypes = {
+  movieId: PropTypes.number,
+  scroll: PropTypes.func,
+};

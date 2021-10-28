@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import defaultImg from '../../default.jpg';
 import s from './MoviesList.module.css';
@@ -29,3 +30,7 @@ export default function MoviesList({ movies }) {
     </div>
   );
 }
+
+MoviesList.propTypes = {
+  movies: PropTypes.array,
+};

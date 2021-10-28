@@ -1,15 +1,17 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { fetchMovieReviews } from '../../services/API';
 import s from './Reviews.module.css';
 
-export default function Reviews({ movieId }) {
+export default function Reviews({ movieId, scroll }) {
   const [reviews, setReview] = useState([]);
 
   useEffect(() => {
     fetchMovieReviews(movieId).then(movie => {
       setReview(movie.results);
+      scroll();
     });
-  }, [movieId]);
+  }, [movieId, scroll]);
 
   return (
     <div>
@@ -33,3 +35,8 @@ export default function Reviews({ movieId }) {
     </div>
   );
 }
+
+Reviews.propTypes = {
+  movieId: PropTypes.number,
+  scroll: PropTypes.func,
+};

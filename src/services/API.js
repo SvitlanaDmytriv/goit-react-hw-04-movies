@@ -10,9 +10,9 @@ export function fetchPopularMovies(page = 1) {
     .catch(err => err);
 }
 
-export function fetchSearchMovies(value) {
+export function fetchSearchMovies(value, page = 1) {
   return axios
-    .get(`${BASE_URL}search/movie?api_key=${KEY}&query=${value}&page=1`)
+    .get(`${BASE_URL}search/movie?api_key=${KEY}&query=${value}&page=${page}`)
     .then(res => res.data)
     .catch(err => err);
 }

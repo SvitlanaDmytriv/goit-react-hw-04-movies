@@ -27,6 +27,15 @@ export default function MovieDetailsPage() {
     });
   }, [movieId]);
 
+  const scroll = () => {
+    setTimeout(() => {
+      window.scrollBy({
+        top: document.documentElement.clientHeight - 145,
+        behavior: 'smooth',
+      });
+    }, 300);
+  };
+
   return (
     <>
       <div className={s.movieDetailsPage}>
@@ -88,11 +97,11 @@ export default function MovieDetailsPage() {
       <Suspense fallback={<Loader />}>
         <Switch>
           <Route path={`${path}/cast`}>
-            <Cast movieId={movieId} />
+            <Cast movieId={movieId} scroll={scroll} />
           </Route>
 
           <Route path={`${path}/reviews`}>
-            <Reviews movieId={movieId} />
+            <Reviews movieId={movieId} scroll={scroll} />
           </Route>
         </Switch>
       </Suspense>

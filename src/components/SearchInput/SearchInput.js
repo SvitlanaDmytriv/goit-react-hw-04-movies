@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import s from './SearchInput.module.css';
@@ -39,3 +40,7 @@ export default function SearchInput({ changeValue }) {
     </div>
   );
 }
+
+SearchInput.propTypes = {
+  changeValue: PropTypes.func,
+};
