@@ -15,7 +15,7 @@ export default function MoviesList({ movies }) {
                 to={{
                   pathname: `/movies/${movie.id}`,
                   state: {
-                    from: { location, label: 'go back' },
+                    from: { location },
                   },
                 }}
                 className={s.movieLink}

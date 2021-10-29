@@ -1,0 +1,35 @@
+.btnContainer {
+  display: flex;
+  margin-right: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 160px;
+  width: 60px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(68, 66, 66);
+  cursor: pointer;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btnText {
+  display: inline-block;
+  transform: rotate(-90deg);
+  font-size: 40px;
+  color: #ee53b3;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover {
+  background-color: rgb(223, 75, 186);
+}
+
+.btn:hover .btnText {
+  color: rgb(68, 66, 66);
+}

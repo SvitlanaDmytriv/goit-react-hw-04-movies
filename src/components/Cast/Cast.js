@@ -46,6 +46,6 @@ export default function Cast({ movieId, scroll }) {
 }
 
 Cast.propTypes = {
-  movieId: PropTypes.number,
+  movieId: PropTypes.string,
   scroll: PropTypes.func,
 };

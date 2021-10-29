@@ -37,6 +37,6 @@ export default function Reviews({ movieId, scroll }) {
 }
 
 Reviews.propTypes = {
-  movieId: PropTypes.number,
+  movieId: PropTypes.string,
   scroll: PropTypes.func,
 };
