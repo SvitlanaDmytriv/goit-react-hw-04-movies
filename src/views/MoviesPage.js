@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-
+import useLS from '../hooks/useLS';
 import SearchInput from '../components/SearchInput/SearchInput';
 import MoviesList from '../components/MoviesList/MoviesList';
 import { fetchSearchMovies } from '../services/API';
 import LoadMore from '../components/LoadMoreBtn/LoadMoreBtn';
 
 export default function MoviesPage() {
-  const [value, setValue] = useState('');
-  const [movies, setMovies] = useState([]);
+  const [value, setValue] = useLS('value', '');
+  const [movies, setMovies] = useLS('movies', []);
   const [error, setError] = useState('');
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useLS('page', 1);
 
   useEffect(() => {
     if (value.trim() === '') {
@@ -24,7 +24,7 @@ export default function MoviesPage() {
       setMovies(prevMovies => [...prevMovies, ...res.results]);
       setError('');
     });
-  }, [page, value]);
+  }, [page, setMovies, value]);
 
   const handleCick = () => {
     setPage(prevPage => prevPage + 1);
